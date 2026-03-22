@@ -17,9 +17,11 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/login")
 
 
 def hash_password(password: str) -> str:
+    password = password[:72]   # 🔥 CRITICAL FIX
     return pwd_context.hash(password)
 
 def verify_password(plain: str, hashed: str) -> bool:
+    plain = plain[:72]   # 🔥 SAME FIX HERE
     return pwd_context.verify(plain, hashed)
 
 def create_access_token(data: dict) -> str:
