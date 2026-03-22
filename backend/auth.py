@@ -8,11 +8,6 @@ from database import get_db
 import models
 import os
 
-@router.get("/debug/users")
-def get_users(db: Session = Depends(get_db)):
-    users = db.query(models.User).all()
-    return users
-
 SECRET_KEY = os.getenv("SECRET_KEY", "change-me-in-production")
 ALGORITHM  = os.getenv("ALGORITHM", "HS256")
 ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "10080"))
